@@ -1,57 +1,13 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Controle de Ferramentas</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <main>
-    <div id="form">
-      <div class="logo">⛑️</div>
-      <h1>CONTROLE DE FERRAMENTAS</h1>
-      <p class="sub">Preencha seus dados para confirmar a retirada da ferramenta.</p>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Controle de Ferramentas</title>
 
-      <div class="tool">
-        <div class="ic">🔨</div>
-        <div>
-          <small>FERRAMENTA</small>
-          <b id="tn">Martelo</b>
-          <span id="tc">Código: 00123</span>
-        </div>
-      </div>
-
-      <label for="nome">👤 Nome completo</label>
-      <input id="nome" type="text" placeholder="Digite seu nome completo" autocomplete="name">
-
-      <label for="cpf">🪪 CPF</label>
-      <input id="cpf" type="tel" inputmode="numeric" maxlength="14"
-             placeholder="Digite seu CPF (xxx.xxx.xxx-xx)">
-
-      <label class="chk">
-        <input id="ok" type="checkbox">
-        <span>Declaro que sou o responsável pela retirada desta ferramenta e estou ciente das normas de uso.</span>
-      </label>
-
-      <p class="err" id="err"></p>
-      <button id="btn">Confirmar</button>
-    </div>
-
-    <div class="ok" id="done">
-      <div class="big">✅</div>
-      <h2>Retirada confirmada</h2>
-      <div class="rec" id="rec"></div>
-      <button class="sec" id="wa">Enviar comprovante por WhatsApp</button>
-    </div>
-  </main>
-
-  <script src="script.js"></script>
-</body>
-</html>
 <style>
-    :root {
+:root {
   --bg: #f6f8fb;
   --card: #fff;
   --ink: #0f2a4a;
@@ -63,7 +19,6 @@
   --ok: #1a7f4b;
 }
 
-/* Modo escuro automático */
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #0e1621;
@@ -78,13 +33,15 @@
   }
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: system-ui, Arial, sans-serif;
 }
 
 main {
@@ -94,11 +51,20 @@ main {
   text-align: center;
 }
 
-.logo { font-size: 48px; line-height: 1; }
-h1 { font-size: 26px; margin: 10px 0 6px; letter-spacing: .3px; }
-.sub { color: var(--muted); margin: 0 0 20px; }
+.logo {
+  font-size: 48px;
+}
 
-/* Cartão da ferramenta */
+h1 {
+  font-size: 26px;
+  margin: 10px 0 6px;
+}
+
+.sub {
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
 .tool {
   display: flex;
   align-items: center;
@@ -109,15 +75,38 @@ h1 { font-size: 26px; margin: 10px 0 6px; letter-spacing: .3px; }
   text-align: left;
   margin-bottom: 22px;
 }
-.tool .ic { font-size: 54px; padding-right: 18px; border-right: 1px solid var(--line); }
-.tool small { color: var(--muted); letter-spacing: .5px; }
-.tool b { display: block; font-size: 24px; }
 
-/* Campos */
-label { display: block; text-align: left; font-weight: 700; margin: 14px 0 6px; }
+.tool .ic {
+  font-size: 45px;
+  padding-right: 18px;
+  border-right: 1px solid var(--line);
+}
+
+.tool small {
+  color: var(--muted);
+  letter-spacing: .5px;
+}
+
+.tool b {
+  display: block;
+  font-size: 22px;
+}
+
+.tool span {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+label {
+  display: block;
+  text-align: left;
+  font-weight: 700;
+  margin: 14px 0 6px;
+}
 
 input[type=text],
-input[type=tel] {
+input[type=tel],
+textarea {
   width: 100%;
   padding: 14px;
   border: 1px solid var(--line);
@@ -125,9 +114,13 @@ input[type=tel] {
   background: var(--card);
   color: var(--ink);
   font-size: 16px;
+  font-family: inherit;
 }
 
-/* Declaração */
+textarea {
+  resize: vertical;
+}
+
 .chk {
   display: flex;
   gap: 12px;
@@ -137,9 +130,14 @@ input[type=tel] {
   color: var(--muted);
   font-weight: 400;
 }
-.chk input { width: 26px; height: 26px; flex: none; margin-top: 2px; }
 
-/* Botões */
+.chk input {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  margin-top: 2px;
+}
+
 button {
   width: 100%;
   padding: 16px;
@@ -151,92 +149,306 @@ button {
   font-weight: 700;
   cursor: pointer;
 }
-button:disabled { opacity: .6; }
 
-.err { color: var(--err); text-align: left; min-height: 20px; margin: 8px 0 0; font-size: 14px; }
+button:disabled {
+  opacity: .6;
+}
 
-/* Tela de confirmação */
-.ok { display: none; }
-.ok .big { font-size: 56px; }
-.ok h2 { color: var(--ok); }
-.rec { background: var(--soft); border-radius: 12px; padding: 14px; text-align: left; line-height: 1.6; }
-.sec { margin-top: 12px; background: transparent; border: 1px solid var(--line); color: var(--ink); }
+.err {
+  color: var(--err);
+  text-align: left;
+  min-height: 20px;
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.ok {
+  display: none;
+}
+
+.ok .big {
+  font-size: 56px;
+}
+
+.ok h2 {
+  color: var(--ok);
+}
+
+.rec {
+  background: var(--soft);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: left;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.sec {
+  margin-top: 12px;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
 </style>
+</head>
+
+<body>
+
+<main>
+
+<div id="form">
+
+  <div class="logo">⛑️</div>
+
+  <h1>CONTROLE DE FERRAMENTAS</h1>
+
+  <p class="sub">
+    Preencha seus dados para confirmar a retirada da ferramenta.
+  </p>
+
+  <div class="tool">
+    <div class="ic">🔨</div>
+    <div>
+      <small>FERRAMENTA</small>
+      <b id="tn">Martelo</b>
+      <span id="tc">Código: 00123</span>
+    </div>
+  </div>
+
+  <label for="nome">👤 Nome completo</label>
+  <input
+    id="nome"
+    type="text"
+    placeholder="Digite seu nome completo"
+    autocomplete="name"
+  >
+
+  <label for="cpf">🪪 CPF</label>
+  <input
+    id="cpf"
+    type="tel"
+    inputmode="numeric"
+    maxlength="14"
+    placeholder="Digite seu CPF (xxx.xxx.xxx-xx)"
+  >
+
+  <label for="motivo">📝 Motivo da retirada</label>
+  <textarea
+    id="motivo"
+    rows="3"
+    maxlength="300"
+    placeholder="Informe por que está retirando esta ferramenta"
+  ></textarea>
+
+  <div class="tool" style="margin-top:18px;">
+    <div class="ic">🕔</div>
+    <div>
+      <small>HORÁRIO DE DEVOLUÇÃO</small>
+      <b>17:00</b>
+      <span>Devolução obrigatória até este horário.</span>
+    </div>
+  </div>
+
+  <label class="chk">
+    <input id="ok" type="checkbox">
+    <span>
+      Declaro que sou o responsável pela retirada desta ferramenta,
+      estou ciente das normas de uso e me comprometo a devolvê-la
+      até às 17:00.
+    </span>
+  </label>
+
+  <p class="err" id="err"></p>
+
+  <button id="btn">Confirmar retirada</button>
+
+</div>
+
+<div class="ok" id="done">
+
+  <div class="big">✅</div>
+
+  <h2>Retirada confirmada!</h2>
+
+  <p class="sub">
+    Confira os dados do comprovante abaixo.
+  </p>
+
+  <div class="rec" id="rec"></div>
+
+  <button class="sec" id="wa">
+    Enviar comprovante por WhatsApp
+  </button>
+
+</div>
+
+</main>
+
 <script>
-    (function () {
+(function () {
+
   const $ = (id) => document.getElementById(id);
 
-  // 1. Nome e código da ferramenta vêm do link: ?ferramenta=Furadeira&codigo=00124
+  // Dados da ferramenta pelo link
+  // Exemplo: ?ferramenta=Furadeira&codigo=00124
+
   const params = new URLSearchParams(location.search);
+
   const nomeF = params.get("ferramenta") || "Martelo";
   const cod = params.get("codigo") || "00123";
+
   $("tn").textContent = nomeF;
   $("tc").textContent = "Código: " + cod;
 
-  // 2. Máscara do CPF: vai colocando pontos e traço enquanto digita
+  // Máscara do CPF
+
   $("cpf").addEventListener("input", (e) => {
+
     let v = e.target.value.replace(/\D/g, "").slice(0, 11);
+
     v = v.replace(/(\d{3})(\d)/, "$1.$2")
          .replace(/(\d{3})(\d)/, "$1.$2")
          .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+
     e.target.value = v;
+
   });
 
-  // 3. Validação do CPF (confere os dois dígitos verificadores)
+  // Validação do CPF
+
   function cpfValido(c) {
+
     c = c.replace(/\D/g, "");
-    if (c.length !== 11 || /^(\d)\1+$/.test(c)) return false;
-    for (let t = 9; t < 11; t++) {
-      let soma = 0;
-      for (let i = 0; i < t; i++) soma += c[i] * (t + 1 - i);
-      const digito = (soma * 10) % 11 % 10;
-      if (digito != c[t]) return false;
+
+    if (c.length !== 11 || /^(\d)\1+$/.test(c)) {
+      return false;
     }
+
+    for (let t = 9; t < 11; t++) {
+
+      let soma = 0;
+
+      for (let i = 0; i < t; i++) {
+        soma += Number(c[i]) * (t + 1 - i);
+      }
+
+      const digito = (soma * 10) % 11 % 10;
+
+      if (digito !== Number(c[t])) {
+        return false;
+      }
+
+    }
+
     return true;
   }
 
-  // Evita que um nome digitado quebre o HTML
+  // Proteção para exibir textos no comprovante
+
   function esc(s) {
+
     const d = document.createElement("div");
+
     d.textContent = s;
+
     return d.innerHTML;
   }
 
-  // 4. Clique no botão Confirmar
+  // Confirmação da retirada
+
   $("btn").addEventListener("click", () => {
+
     const nome = $("nome").value.trim();
     const cpf = $("cpf").value;
+    const motivo = $("motivo").value.trim();
+
+    const horarioDevolucao = "17:00";
+
     const err = $("err");
+
     err.textContent = "";
 
-    if (nome.split(/\s+/).length < 2) { err.textContent = "Digite seu nome completo."; return; }
-    if (!cpfValido(cpf)) { err.textContent = "CPF inválido. Confira os números."; return; }
-    if (!$("ok").checked) { err.textContent = "Marque a declaração para continuar."; return; }
+    if (nome.split(/\s+/).length < 2) {
+      err.textContent = "Digite seu nome completo.";
+      return;
+    }
+
+    if (!cpfValido(cpf)) {
+      err.textContent = "CPF inválido. Confira os números.";
+      return;
+    }
+
+    if (motivo.length < 5) {
+      err.textContent = "Informe o motivo da retirada da ferramenta.";
+      return;
+    }
+
+    if (!$("ok").checked) {
+      err.textContent = "Marque a declaração para continuar.";
+      return;
+    }
 
     const dataTxt = new Date().toLocaleString("pt-BR");
 
-    // Comprovante na tela
-    $("rec").innerHTML =
-      "<b>Nome:</b> " + esc(nome) +
-      "<br><b>CPF:</b> " + esc(cpf) +
-      "<br><b>Ferramenta:</b> " + esc(nomeF) + " (" + esc(cod) + ")" +
-      "<br><b>Data/hora:</b> " + esc(dataTxt);
+    // Monta comprovante
 
-    // Botão que envia o comprovante pelo WhatsApp
+    $("rec").innerHTML =
+
+      "<b>Nome:</b> " + esc(nome) +
+
+      "<br><b>CPF:</b> " + esc(cpf) +
+
+      "<br><b>Ferramenta:</b> " +
+      esc(nomeF) + " (" + esc(cod) + ")" +
+
+      "<br><b>Motivo da retirada:</b> " +
+      esc(motivo) +
+
+      "<br><b>Horário de devolução:</b> " +
+      horarioDevolucao +
+
+      "<br><b>Data/hora da retirada:</b> " +
+      esc(dataTxt);
+
+    // Envio pelo WhatsApp
+
     $("wa").onclick = () => {
+
       const msg =
-        "RETIRADA DE FERRAMENTA\n" +
+
+        "RETIRADA DE FERRAMENTA\n\n" +
+
         "Nome: " + nome + "\n" +
+
         "CPF: " + cpf + "\n" +
+
         "Ferramenta: " + nomeF + " (" + cod + ")\n" +
-        "Data: " + dataTxt + "\n" +
+
+        "Motivo da retirada: " + motivo + "\n" +
+
+        "Horário de devolução: " + horarioDevolucao + "\n" +
+
+        "Data/hora da retirada: " + dataTxt + "\n\n" +
+
         "Declaro ser o responsável pela retirada e estar ciente das normas de uso.";
-      window.open("https://wa.me/?text=" + encodeURIComponent(msg), "_blank");
+
+      window.open(
+        "https://wa.me/?text=" + encodeURIComponent(msg),
+        "_blank"
+      );
+
     };
 
-    // Troca a tela do formulário pela tela de confirmação
+    // Mostra confirmação
+
     $("form").style.display = "none";
+
     $("done").style.display = "block";
+
   });
+
 })();
 </script>
+
+</body>
+</html>
